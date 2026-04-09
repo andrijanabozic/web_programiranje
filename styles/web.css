@@ -1,0 +1,198 @@
+/* DODANO: CSS Varijable (zahtjev 2.2) */
+:root {
+    --primarna-plava: #3498db;
+    --tamna: #222;
+}
+
+
+
+
+/* Opći stilovi */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+/* Header i navigacija */
+header {
+    background: #222;
+    color: white;
+    padding: 20px;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li {
+    margin: 0 15px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+
+/* DODANO: Grid layout za pozicioniranje aside elementa (zahtjev 2.1) */
+.main-layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    max-width: 1200px;
+    margin: 20px auto;
+    gap: 20px;
+}
+
+
+/* Sekcije */
+.content {
+    padding: 40px;
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Flexbox za podatke */
+.data-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Kružni grafikon - CSS samo */
+.pie-chart {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #3498db 0% 40%,  /* Industrija */
+        #2ecc71 40% 75%,  /* Kućanstva */
+        #f1c40f 75% 100%  /* Transport */
+    );
+    margin: 0 auto;
+}
+
+/* Flexbox analiza sekcija */
+.analysis-flex {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap; /* wrap */
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.analysis-box {
+    background: #e3e3e3;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 250px;
+    max-width: 300px;
+}
+
+/* Flexbox za kontakt formu */
+.form-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+input, button {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    padding: 10px;
+    background: #222;
+    color: white;
+}
+
+/* Responzivnost */
+@media (max-width: 768px) {
+    .data-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .analysis-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .form-flex input, .form-flex button {
+        width: 100%;
+    }
+}
+
+/* --- DODANO: Stilizacija tablice (zahtjev 2.1) --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table th {
+    background-color: var(--primarna-plava); /* Korištenje varijable */
+    color: white;
+    padding: 12px;
+}
+
+table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+/* --- DODANO: Animacija grafikona (zahtjev 2.2) --- */
+/* Animacija da se grafikon postupno pojavi */
+.pie-chart {
+    animation: pojavljivanje 1.5s ease-out;
+}
+
+@keyframes pojavljivanje {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Hover efekt na grafikonu */
+.pie-chart:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}

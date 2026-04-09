@@ -1,0 +1,53 @@
+/* DODANO: CSS varijable za boje i dimenzije (zahtjev 2.2) */
+:root {
+    --boja-stupca: #3498db;
+    --boja-hover: #e67e22;
+    --trajanje-animacije: 2s;
+}
+
+/* Kontejner za histogram */
+.histogram-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 300px;
+    border-bottom: 2px solid #222;
+    padding: 20px;
+    margin: 50px auto;
+    max-width: 600px;
+    background-color: #fff;
+}
+
+/* Stupci grafikona */
+.bar {
+    width: 50px;
+    background-color: var(--boja-stupca);
+    position: relative;
+    /* DODANO: Animacija rasta stupaca od nule (zahtjev 2.2) */
+    animation: grow var(--trajanje-animacije) forwards ease-out;
+}
+
+/* Ključni kadrovi za animaciju rasta */
+@keyframes grow {
+    from { height: 0; }
+    to { height: var(--visina); } /* Visina se uzima iz HTML-a */
+}
+
+/* DODANO: Hover efekt na stupcima (zahtjev 2.2) */
+.bar:hover {
+    background-color: var(--boja-hover);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* DODANO: Prikaz labela (naziva žanra) ispod stupca */
+.bar::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #222;
+    white-space: nowrap;
+}
