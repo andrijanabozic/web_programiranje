@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galerija slika s lightbox efektom bez JavaScripta - Dinamički EJS.">
+
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/style_slike.css">
+
+    
+
+    <title>Galerija Filmova</title>
+</head>
+<body>
+
+<header role="banner">
+    <h1>Galerija slika</h1>
+
+    <input type="checkbox" id="nav-check" style="display: none;">
+    <label for="nav-check" class="nav-trigger">IZBORNIK ☰</label>
+
+    <nav role="navigation" aria-label="Glavni izbornik" class="dynamic-nav">
+        <ul class="nav-menu"> 
+            <li><a href="/">Početna</a></li>
+            <li><a href="/grafikon">Grafikoni</a></li>
+            <li><a href="/slike">Galerija</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="galerija"> 
+    <div class="img-gallery-magnific">
+
+        <% images.forEach(image => { %>
+            
+            <figure class="galerija_slika">
+                <a href="#<%= image.id %>">
+                    <img src="<%= image.url %>" alt="<%= image.title %>" loading="lazy">
+                </a>
+                <figcaption><%= image.title %></figcaption>
+            </figure>
+
+            <div id="<%= image.id %>" class="lightbox">
+                <a href="#_" class="close-area"></a>
+                <div class="lightbox-content">
+                    <img src="<%= image.fullUrl %>" alt="<%= image.title %>">
+                    <a href="#_" class="close-btn">Zatvori X</a>
+                </div>
+            </div>
+
+        <% }); %>
+
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025. Web Programiranje. Sva prava pridržana.</p>
+</footer>
+
+</body>
+</html>
