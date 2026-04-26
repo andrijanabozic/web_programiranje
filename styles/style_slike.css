@@ -1,71 +1,96 @@
-@import url('https://googleapis.com');
-
 body {
-  font-family: 'Abel', sans-serif;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-}
-
-h1 {
-  font-weight: 100;
-  font-size: 40px;
-  text-align: center;
-  margin-top: 30px;
-}
-
-/* TVOJI POSTOJEĆI STILOVI ZA GALERIJU */
-.img-gallery-magnific {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.galerija_slika { /* DODANO: Usklađeno s tvojim HTML klasama */
-  width: 30%;
-  min-width: 250px;
-}
-
-.galerija_slika img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  transition: transform 0.3s ease, filter 0.3s ease; /* DODANO: Dvije značajke */
-  filter: brightness(0.8); /* DODANO: 1. značajka */
-}
-
-.galerija_slika img:hover {
-  transform: scale(1.05); /* DODANO: 2. značajka */
-  filter: brightness(1);
-}
-
-/* DODANO: Lightbox sustav (zahtjev 2.3) */
-.lightbox {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.lightbox:target {
-    display: flex;
-}
-
-.close {
-    position: absolute;
-    top: 20px; right: 30px;
-    font-size: 50px; color: white; text-decoration: none;
+  background-color: #f4f4f4;
 }
 
 .galerija h1 {
   color: darkblue;
-  font-size: 2rem;
+  font-size: 2.5rem;
   text-align: center;
+  margin: 30px 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
+
+.img-gallery-magnific {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.galerija_slika {
+  width: 22%; 
+  min-width: 250px;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin: 0; 
+  display: block; 
+}
+
+.galerija_slika img {
+  width: 100%;
+  height: 200px; 
+  object-fit: cover; 
+  border-radius: 4px;
+  display: block;
+  filter: grayscale(100%);
+  transition: 0.4s ease;
+}
+
+.galerija_slika:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox:target {
+  display: flex; 
+}
+
+.lightbox-content {
+  position: relative;
+  text-align: center;
+  max-width: 90%;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  border: 4px solid white;
+}
+
+.close-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #c0392b;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.close-area {
+  position: absolute;
+  width: 100%; height: 100%;
+  cursor: default;
+}
+
+@media (max-width: 1024px) { .galerija_slika { width: 30%; } }
+@media (max-width: 768px) { .galerija_slika { width: 45%; } }
+@media (max-width: 480px) { .galerija_slika { width: 95%; } }

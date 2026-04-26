@@ -1,53 +1,122 @@
-/* DODANO: CSS varijable za boje i dimenzije (zahtjev 2.2) */
 :root {
-    --boja-stupca: #3498db;
-    --boja-hover: #e67e22;
-    --trajanje-animacije: 2s;
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --accent-color: #f1c40f;
+    --bg-chart: #e3e3e3;
+    --chart-size: 250px;
+    --anim-speed: 1.5s;
 }
 
-/* Kontejner za histogram */
-.histogram-container {
+.charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+}
+
+.chart-section {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.pie-chart {
+    width: var(--chart-size);
+    height: var(--chart-size);
+    border-radius: 50%;
+    margin: 20px auto;
+    background: conic-gradient(
+        var(--primary-color) 0% 40%, 
+        var(--secondary-color) 40% 70%, 
+        var(--accent-color) 70% 100%
+    );
+    position: relative;
+    transition: transform 0.5s;
+    animation: rotateIn var(--anim-speed) ease-out;
+}
+
+.pie-chart:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+}
+
+.pie-chart:hover::after {
+    content: "Kliknite za detalje";
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.bar-chart {
     display: flex;
     align-items: flex-end;
     justify-content: space-around;
-    height: 300px;
-    border-bottom: 2px solid #222;
-    padding: 20px;
-    margin: 50px auto;
-    max-width: 600px;
-    background-color: #fff;
+    height: 200px;
+    width: 300px;
+    border-left: 2px solid #333;
+    border-bottom: 2px solid #333;
+    padding: 10px;
+    margin: 0 auto;
 }
 
-/* Stupci grafikona */
 .bar {
-    width: 50px;
-    background-color: var(--boja-stupca);
+    width: 40px;
+    background: linear-gradient(to top, var(--primary-color), #85c1e9); 
+    height: 0; 
+    transition: height var(--anim-speed) ease-in-out;
+    animation: growUp var(--anim-speed) forwards;
     position: relative;
-    /* DODANO: Animacija rasta stupaca od nule (zahtjev 2.2) */
-    animation: grow var(--trajanje-animacije) forwards ease-out;
 }
 
-/* Ključni kadrovi za animaciju rasta */
-@keyframes grow {
-    from { height: 0; }
-    to { height: var(--visina); } /* Visina se uzima iz HTML-a */
-}
-
-/* DODANO: Hover efekt na stupcima (zahtjev 2.2) */
 .bar:hover {
-    background-color: var(--boja-hover);
-    cursor: pointer;
-    transition: background-color 0.3s;
+    filter: brightness(1.2);
 }
 
-/* DODANO: Prikaz labela (naziva žanra) ispod stupca */
-.bar::after {
-    content: attr(data-label);
+.bar:hover::after {
+    content: attr(data-value);
     position: absolute;
-    bottom: -30px;
+    top: -25px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 14px;
-    color: #222;
-    white-space: nowrap;
+    font-weight: bold;
 }
+
+@keyframes rotateIn {
+    from { transform: rotate(-180deg) scale(0); opacity: 0; }
+    to { transform: rotate(0) scale(1); opacity: 1; }
+}
+
+@keyframes growUp {
+    from { height: 0; }
+    to { height: var(--size); }
+}
+
+
+@media (min-width: 769px) {
+    .bar-only { display: none; }
+}
+
+@media (max-width: 768px) {
+    .pie-only { display: none; }
+    .bar-only { display: block; }
+    
+    .bar-chart {
+        width: 100%;
+        gap: 10px;
+    }
+}
+
+.legend { list-style: none; padding: 0; text-align: left; }
+.legend li { margin: 5px 0; }
+.box { display: inline-block; width: 15px; height: 15px; margin-right: 10px; border-radius: 3px; }
+.komedija { background: var(--primary-color); }
+.drama { background: var(--secondary-color); }
+.ostalo { background: var(--accent-color); }

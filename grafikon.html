@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/style_grafikon.css">
+    <title>Grafički prikaz filmova</title>
+</head>
+<body>
+    <header role="banner">
+        <h1>Statistika Filmova</h1>
+        <input type="checkbox" id="nav-check" style="display: none;">
+        <label for="nav-check" class="nav-trigger">IZBORNIK ☰</label>
+        <nav role="navigation" class="dynamic-nav">
+            <ul class="nav-menu"> 
+                <li><a href="index.html">Početna</a></li>
+                <li><a href="grafikon.html">Grafikoni</a></li>
+                <li><a href="slike.html">Galerija</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content">
+        <h2>Analiza žanrova iz baze</h2>
+        
+        <div class="charts-container">
+            
+            <section class="chart-section pie-only">
+                <h3>Udio žanrova (Kružni prikaz)</h3>
+                <div class="pie-chart" aria-label="Kružni grafikon udjela žanrova">
+                    <div class="pie-info" data-info="Komedija 40%"></div>
+                </div>
+                <ul class="legend">
+                    <li><span class="box komedija"></span> Komedija (40%)</li>
+                    <li><span class="box drama"></span> Drama (30%)</li>
+                    <li><span class="box ostalo"></span> Ostalo (30%)</li>
+                </ul>
+            </section>
+
+            <section class="chart-section bar-only">
+                <h3>Broj filmova po žanru (Histogram)</h3>
+                <div class="bar-chart">
+                    <div class="bar komedija" style="--size: 90%;" data-value="Komedija"></div>
+                    <div class="bar drama" style="--size: 70%;" data-value="Drama"></div>
+                    <div class="bar krimic" style="--size: 40%;" data-value="Krimić"></div>
+                    <div class="bar ostalo" style="--size: 50%;" data-value="Ostalo"></div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025. Web Programiranje. Sva prava pridržana.</p>
+    </footer>
+</body>
+</html>
