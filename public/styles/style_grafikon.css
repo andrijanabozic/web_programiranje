@@ -1,0 +1,122 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --accent-color: #f1c40f;
+    --bg-chart: #e3e3e3;
+    --chart-size: 250px;
+    --anim-speed: 1.5s;
+}
+
+.charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+}
+
+.chart-section {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.pie-chart {
+    width: var(--chart-size);
+    height: var(--chart-size);
+    border-radius: 50%;
+    margin: 20px auto;
+    background: conic-gradient(
+        var(--primary-color) 0% 40%, 
+        var(--secondary-color) 40% 70%, 
+        var(--accent-color) 70% 100%
+    );
+    position: relative;
+    transition: transform 0.5s;
+    animation: rotateIn var(--anim-speed) ease-out;
+}
+
+.pie-chart:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+}
+
+.pie-chart:hover::after {
+    content: "Kliknite za detalje";
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 200px;
+    width: 300px;
+    border-left: 2px solid #333;
+    border-bottom: 2px solid #333;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.bar {
+    width: 40px;
+    background: linear-gradient(to top, var(--primary-color), #85c1e9); 
+    height: 0; 
+    transition: height var(--anim-speed) ease-in-out;
+    animation: growUp var(--anim-speed) forwards;
+    position: relative;
+}
+
+.bar:hover {
+    filter: brightness(1.2);
+}
+
+.bar:hover::after {
+    content: attr(data-value);
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+@keyframes rotateIn {
+    from { transform: rotate(-180deg) scale(0); opacity: 0; }
+    to { transform: rotate(0) scale(1); opacity: 1; }
+}
+
+@keyframes growUp {
+    from { height: 0; }
+    to { height: var(--size); }
+}
+
+
+@media (min-width: 769px) {
+    .bar-only { display: none; }
+}
+
+@media (max-width: 768px) {
+    .pie-only { display: none; }
+    .bar-only { display: block; }
+    
+    .bar-chart {
+        width: 100%;
+        gap: 10px;
+    }
+}
+
+.legend { list-style: none; padding: 0; text-align: left; }
+.legend li { margin: 5px 0; }
+.box { display: inline-block; width: 15px; height: 15px; margin-right: 10px; border-radius: 3px; }
+.komedija { background: var(--primary-color); }
+.drama { background: var(--secondary-color); }
+.ostalo { background: var(--accent-color); }
