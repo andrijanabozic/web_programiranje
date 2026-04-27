@@ -1,3 +1,8 @@
+//LV3
+const fs = require('fs');
+const csv = require('csv-parser');
+
+
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -28,6 +33,12 @@ app.get('/slike', (req, res) => {
         });
     }
     res.render('slike', { images: images });
+});
+
+
+//LV3
+app.get('/filmovi', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'filmovi.html'));
 });
 
 app.listen(PORT, () => {

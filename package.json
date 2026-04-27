@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/andrijanabozic/web_programiranje#readme",
   "dependencies": {
+    "csv-parser": "^3.2.0",
     "ejs": "^5.0.2",
     "express": "^5.2.1"
   }
