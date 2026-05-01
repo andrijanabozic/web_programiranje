@@ -23,16 +23,19 @@ app.get('/grafikon', (req, res) => {
 });
 
 app.get('/slike', (req, res) => {
-    const images = [];
-    for (let i = 1; i <= 16; i++) {
-        images.push({
-            id: `img${i}`,
-            url: `https://picsum.photos/seed/${i}/300/200`,
-            fullUrl: `https://picsum.photos/seed/${i}/800/600`,
-            title: `Slika ${i}`
-        });
-    }
-    res.render('slike', { images: images });
+    const folderPath = path.join(__dirname, 'public', 'images');
+    const files = fs.readdirSync(folderPath);
+
+    const images = files
+        .filter(file => file.endsWith('.jpg') || file.endsWith('.png'))
+        .map((file, index) => ({
+            id: `img${index + 1}`,
+            url: `/images/${file}`,       
+            fullUrl: `/images/${file}`,   
+            title: `Slika ${index + 1}`
+        }));
+
+    res.render('slike', { images });
 });
 
 
